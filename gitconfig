@@ -1,0 +1,57 @@
+[alias]
+	versions = tag -l --sort=version:refname
+	co = checkout
+	di = diff
+	dis = diff --stat
+	diw = diff --color-words
+	dc = diff --cached
+	dcs = diff --cached --stat
+	dcw = diff --cached --color-words
+	dh = diff HEAD~
+	dhs = diff HEAD~ --stat
+	dhw = diff HEAD~ --color-words
+	du = diff @{u}...
+	dus = diff @{u}... --stat
+	duw = diff @{u}... --color-words
+	grp = grep -C 1
+	f = fetch --tags --prune
+	fa = fetch --all --tags --prune
+	pullrb = pull --rebase
+	lg = log -p
+	gr = log --graph --format=line # graph
+	grd = log --graph --format=detail # graph detail
+	gra = log --graph --format=line --all # graph all
+	grad = log --graph --format=detail --all # graph all in detail
+	update-submodules = submodule update --init --recursive
+	upgrade-submodules = submodule update --init --remote
+	tar = ! "tar() { git archive --format tar --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; tar"
+	targz = ! "targz() { git archive --format tar.gz --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; targz"
+	zip = ! "zip() { git archive --format zip --prefix=\"${PWD##*/}/\" HEAD -o ${1}; }; zip"
+
+[init]
+	defaultBranch = main
+
+[color]
+	ui = auto
+
+[color "grep"]
+	match = cyan bold
+	selected = blue
+	context = normal
+	filename = magenta
+	linenumber = green
+	separator = yellow
+	function = blue
+
+[push]
+	default = upstream
+
+[grep]
+	lineNumber = true
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local

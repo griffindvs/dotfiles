@@ -16,9 +16,10 @@ autoload -U colors && colors
 
 # Make using 256 colors easier
 if [[ "$(tput colors)" == "256" ]]; then
+    source ~/.zsh/spectrum.zsh
     # change default colors
     fg[red]=$FG[160]
-    fg[green]=$FG[064]
+    fg[green]=$FG[085]
     fg[yellow]=$FG[136]
     fg[blue]=$FG[033]
     fg[magenta]=$FG[125]
@@ -26,7 +27,7 @@ if [[ "$(tput colors)" == "256" ]]; then
 
     fg[teal]=$FG[041]
     fg[orange]=$FG[166]
-    fg[violet]=$FG[061]
+    fg[violet]=$FG[141]
     fg[neon]=$FG[112]
     fg[pink]=$FG[183]
 else
@@ -69,7 +70,7 @@ function PR_DIR() {
         last=${last[2,-1]} # take substring
     fi
 
-    echo "%{$fg[green]%}${truncated}%{$fg[orange]%}%B${last}%b%{$reset_color%}"
+    echo "%{$reset_color%}${truncated}%{$fg[orange]%}%B${last}%b%{$reset_color%}"
 }
 
 # An exclamation point if the previous command did not complete successfully
@@ -78,7 +79,7 @@ function PR_ERROR() {
 }
 
 # The arrow symbol that is used in the prompt
-PR_ARROW_CHAR=">"
+PR_ARROW_CHAR="%#"
 
 # The arrow in red (for root) or violet (for regular user)
 function PR_ARROW() {
@@ -111,10 +112,8 @@ function RPR_HOST() {
     colors=(cyan green yellow red pink)
     local index=$("$PROMPT_PYTHON" <<EOF
 import hashlib
-
 hash = int(hashlib.sha1('$(machine_name)'.encode('utf8')).hexdigest(), 16)
 index = hash % ${#colors} + 1
-
 print(index)
 EOF
     )
@@ -127,7 +126,7 @@ EOF
 # ' at ' in orange outputted only if both user and host enabled
 function RPR_AT() {
     if [[ "${RPR_SHOW_USER}" == "true" ]] && [[ "${RPR_SHOW_HOST}" == "true" ]]; then
-        echo "%{$fg[blue]%} at %{$reset_color%}"
+        echo "%{$fg[blue]%} : %{$reset_color%}"
     fi
 }
 
@@ -227,7 +226,7 @@ function tog() {
 }
 
 function PR_EXTRA() {
-    # do nothing by default
+    echo "%{$reset_color%}[ %F{51}%n%{$reset_color%}:"
 }
 
 # Show select exported environment variables
@@ -302,9 +301,9 @@ function PR_VARS() {
 function PCMD() {
     if (( PROMPT_MODE == 0 )); then
         if $_vars_multiline; then
-            echo "$(PR_VARS)$(PR_EXTRA)$(PR_DIR) $(PR_ERROR)$(PR_ARROW) " # space at the end
+            echo "$(PR_VARS)$(PR_EXTRA)$(PR_DIR) %{$reset_color%}] $(PR_ERROR)$(PR_ARROW) " # space at the end
         else
-            echo "$(PR_EXTRA)$(PR_DIR)$(PR_VARS) $(PR_ERROR)$(PR_ARROW) " # space at the end
+            echo "$(PR_EXTRA)$(PR_DIR)$(PR_VARS) %{$reset_color%}] $(PR_ERROR)$(PR_ARROW) " # space at the end
         fi
     elif (( PROMPT_MODE == 1 )); then
         echo "$(PR_EXTRA)$(PR_DIR 1) $(PR_ERROR)$(PR_ARROW) " # space at the end
@@ -315,3 +314,51 @@ function PCMD() {
 
 PROMPT='$(PCMD)' # single quotes to prevent immediate execution
 RPROMPT='' # set asynchronously and dynamically
+
+function RPR_EXTRA() {
+    # do nothing by default
+}
+
+# Right-hand prompt
+function RCMD() {
+    if (( PROMPT_MODE == 0 )); then
+        echo "$(git_prompt_string)$(RPR_EXTRA)"
+    elif (( PROMPT_MODE <= 2 )); then
+        echo "$(git_prompt_string)$(RPR_EXTRA)"
+    else
+        echo "$(RPR_EXTRA)"
+    fi
+}
+
+ASYNC_PROC=0
+function precmd() {
+    function async() {
+        # save to temp file
+        printf "%s" "$(RCMD)" > "/tmp/zsh_prompt_$$"
+
+        # signal parent
+        kill -s USR1 $$
+    }
+
+    # do not clear RPROMPT, let it persist
+
+    # kill child if necessary
+    if [[ "${ASYNC_PROC}" != 0 ]]; then
+        kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+    fi
+
+    # start background computation
+    async &!
+    ASYNC_PROC=$!
+}
+
+function TRAPUSR1() {
+    # read from temp file
+    RPROMPT="$(cat /tmp/zsh_prompt_$$)"
+
+    # reset proc number
+    ASYNC_PROC=0
+
+    # redisplay
+    zle && zle reset-prompt
+}

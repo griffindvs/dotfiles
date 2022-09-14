@@ -58,6 +58,3 @@
 # Allow local customizations in the .gitconfig_local file
 [include]
 	path = ~/.gitconfig_local
-[user]
-	name = Griffin Davis
-	email = 18495025+griffindvs@users.noreply.github.com

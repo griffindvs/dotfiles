@@ -46,6 +46,9 @@
 [push]
 	default = upstream
 
+[pull]
+	ff = only
+
 [grep]
 	lineNumber = true
 
@@ -56,4 +59,5 @@
 [include]
 	path = ~/.gitconfig_local
 [user]
-	name = griffindvs
+	name = Griffin Davis
+	email = 18495025+griffindvs@users.noreply.github.com

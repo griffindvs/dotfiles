@@ -11,6 +11,10 @@ alias l='ls'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# Tool replacements
+alias ls='eza'
+alias cat='bat'
+
 # Update dotfiles
 dfu() {
     (

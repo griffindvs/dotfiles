@@ -2,41 +2,13 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/pack/vendor/start/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-	ignore = untracked
-[submodule "vim/bundle/vim-markdown"]
-	path = vim/pack/vendor/start/vim-markdown
-	url = https://github.com/tpope/vim-markdown
-	ignore = untracked
-[submodule "vim/bundle/vim-git"]
-	path = vim/pack/vendor/start/vim-git
-	url = https://github.com/tpope/vim-git.git
-	ignore = untracked
-[submodule "vim/bundle/vim-javascript"]
-	path = vim/pack/vendor/start/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
-	ignore = untracked
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/pack/vendor/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 	ignore = untracked
-[submodule "vim/bundle/vim-json"]
-	path = vim/pack/vendor/start/vim-json
-	url = https://github.com/elzr/vim-json
-	ignore = untracked
-[submodule "vim/bundle/vim-tmux"]
-	path = vim/pack/vendor/start/vim-tmux
-	url = https://github.com/tmux-plugins/vim-tmux
-	ignore = untracked
 [submodule "vim/bundle/nerdtree"]
 	path = vim/pack/vendor/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-	ignore = untracked
-[submodule "vim/bundle/incsearch.vim"]
-	path = vim/pack/vendor/start/incsearch.vim
-	url = https://github.com/haya14busa/incsearch.vim
 	ignore = untracked
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/pack/vendor/start/vim-easymotion
@@ -50,25 +22,9 @@
 	path = vim/pack/vendor/start/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
 	ignore = untracked
-[submodule "vim/bundle/typescript-vim"]
-	path = vim/pack/vendor/start/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim
-	ignore = untracked
-[submodule "vim/bundle/lightline.vim"]
-	path = vim/pack/vendor/start/lightline.vim
-	url = https://github.com/itchyny/lightline.vim
-	ignore = untracked
 [submodule "vim/bundle/vim-over"]
 	path = vim/pack/vendor/start/vim-over
 	url = https://github.com/osyo-manga/vim-over
-	ignore = untracked
-[submodule "vim/pack/vendor/start/vim-jsx-pretty"]
-	path = vim/pack/vendor/start/vim-jsx-pretty
-	url = https://github.com/MaxMEllon/vim-jsx-pretty
-	ignore = untracked
-[submodule "vim/pack/vendor/start/vim-js"]
-	path = vim/pack/vendor/start/vim-js
-	url = https://github.com/yuezk/vim-js
 	ignore = untracked
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/plugins/zsh-syntax-highlighting
@@ -76,3 +32,12 @@
 [submodule "zsh/plugins/zsh-completions"]
 	path = zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "vim/pack/plugins/start/polyglot"]
+	path = vim/pack/plugins/start/polyglot
+	url = git@github.com:sheerun/vim-polyglot.git
+[submodule "vim/pack/colors/opt/sonokai"]
+	path = vim/pack/colors/opt/sonokai
+	url = git@github.com:sainnhe/sonokai.git
+[submodule "vim/pack/plugins/start/lightline"]
+	path = vim/pack/plugins/start/lightline
+	url = git@github.com:itchyny/lightline.vim.git

@@ -19,6 +19,10 @@
     ~/.zsh:
     ~/.zshrc:
     ~/.condarc:
+    ~/.config/:
+      glob: true
+      path: config/*
+
 
 - shell:
   - git submodule sync --recursive

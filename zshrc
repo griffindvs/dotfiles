@@ -1,3 +1,6 @@
+# Start profiling
+# zmodload zsh/zprof
+
 # Functions
 source ~/.shell/functions.sh
 
@@ -45,3 +48,5 @@ if [ -f ~/.shell_private ]; then
     source ~/.shell_private
 fi
 
+# End profiling
+# zprof

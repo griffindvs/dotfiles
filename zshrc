@@ -24,7 +24,8 @@ source ~/.shell/bootstrap.sh
 source ~/.shell/aliases.sh
 
 # Custom prompt
-source ~/.zsh/prompt.zsh
+# Disabled for replacement by starship.
+# source ~/.zsh/prompt.zsh
 
 # External plugins (initialized after)
 source ~/.zsh/plugins_after.zsh
@@ -43,3 +44,4 @@ fi
 if [ -f ~/.shell_private ]; then
     source ~/.shell_private
 fi
+

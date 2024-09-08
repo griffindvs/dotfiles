@@ -17,6 +17,7 @@
 \.#*
 .ipynb_checkpoints/
 *.code-workspace
+.vscode
 
 # Logs and databases #
 ######################

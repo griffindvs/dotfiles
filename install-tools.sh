@@ -11,4 +11,6 @@ fi
 brew install eza
 brew install bat
 brew install git-delta
+brew install nvim
+brew install starship
 

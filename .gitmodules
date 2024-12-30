@@ -41,3 +41,9 @@
 [submodule "vim/pack/plugins/start/lightline"]
 	path = vim/pack/plugins/start/lightline
 	url = git@github.com:itchyny/lightline.vim.git
+[submodule "vim/pack/plugins/start/vim-orgmode"]
+	path = vim/pack/plugins/start/vim-orgmode
+	url = git@github.com:jceb/vim-orgmode.git
+[submodule "vim/pack/plugins/start/vim-speeddating"]
+	path = vim/pack/plugins/start/vim-speeddating
+	url = git@github.com:tpope/vim-speeddating.git
